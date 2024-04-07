@@ -1,7 +1,6 @@
 /**
  * Illustrates a WordCount in Java
  */
-package com.example;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
