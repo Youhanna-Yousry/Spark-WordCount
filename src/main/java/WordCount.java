@@ -24,16 +24,19 @@ public class WordCount {
             JavaRDD<String> input = sc.textFile(inputFile);
 
             // Split up into words.
-            JavaRDD<String> words = input.flatMap((x) -> Arrays.asList(x.split(" ")).iterator());
+            JavaRDD<String> words = input.flatMap(x -> Arrays.asList(x.split(" ")).iterator());
 
             // Map each word to a (word, 1) pair
-            JavaPairRDD<String, Integer> ones = words.mapToPair((x) -> new Tuple2<>(x, 1));
+            JavaPairRDD<String, Integer> ones = words.mapToPair(x -> new Tuple2<>(x, 1));
 
             // ReduceByKey to count the occurrences of each word
             JavaPairRDD<String, Integer> counts = ones.reduceByKey(Integer::sum);
 
+            // Map each pair to a string of the form "word \t count"
+            JavaRDD<String> formattedCounts = counts.map(x -> x._1 + "\t" + x._2);
+
             // Save the word count back out to a text file, causing evaluation.
-            counts.map(x -> x._1 + "\t" + x._2).saveAsTextFile(outputFile);
+            formattedCounts.saveAsTextFile(outputFile);
         }
     }
 }
