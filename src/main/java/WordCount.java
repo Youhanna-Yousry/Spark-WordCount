@@ -33,7 +33,7 @@ public class WordCount {
             JavaPairRDD<String, Integer> counts = ones.reduceByKey(Integer::sum);
 
             // Save the word count back out to a text file, causing evaluation.
-            counts.saveAsTextFile(outputFile);
+            counts.map(x -> x._1 + "\t" + x._2).saveAsTextFile(outputFile);
         }
     }
 }

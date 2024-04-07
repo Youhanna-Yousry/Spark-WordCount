@@ -20,19 +20,19 @@
 7. Stop hadoop using the following command:
 ```stop-all.sh```
 8. Check the top 10 words using the following command:
-      ```sort -t, -n -k2 <local_output_files_path>/* | tail -10```
+      ```sort -n -k2 * | tail -10```
 
 ## Results:
 The top 10 words in the input files are:
 ```
-(A,269)
-([Language:,483)
-(and,555)
-(The,634)
-([Subtitle:,678)
-(the,834)
-(of,982)
-(13,1905,1)
-(by,2018)
-(,57835)
+[Illustrator:	215
+in	265
+A	269
+[Language:	483
+and	555
+The	634
+[Subtitle:	678
+the	834
+of	982
+by	2018
 ```
